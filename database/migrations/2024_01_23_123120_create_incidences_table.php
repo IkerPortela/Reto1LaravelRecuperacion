@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("title",128);
             $table->string("text",5000);
-            $table->boolean("publicado");
+            $table->boolean("posted");
+            $table->string("used_time");
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('category_id')->onDelete('cascade');

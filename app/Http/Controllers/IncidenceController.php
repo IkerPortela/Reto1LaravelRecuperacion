@@ -41,7 +41,8 @@ class IncidenceController extends Controller
         $incidence = new Incidence();
         $incidence->title = $request->title;
         $incidence->text = $request->text;
-        $incidence->publicado = $request->has('publicado');
+        $incidence->posted = $request->has('posted');
+        $incidence->used_time = $request->used_time;
         $incidence->user_id = $request->user()->id;
         $incidence->category_id = $request->category_id;
         $incidence->department_id = $request->user()->department_id;
@@ -73,7 +74,8 @@ class IncidenceController extends Controller
     {
         $incidence->title = $request->titulo;
         $incidence->text = $request->texto;
-        $incidence->publicado = $request->has('publicado');
+        $incidence->posted = $request->has('posted');
+        $incidence->used_time = $request->used_time;
         $incidence->category_id = $request->category_id;
         $incidence->department_id = $request->department_id;
         $incidence->save();

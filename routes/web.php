@@ -55,25 +55,15 @@ Route::middleware(['auth'])->group(function () {
     
     Route::controller(DepartmentController::class)->group(function () {
         Route::get('/departments', 'index')->name('departments.index');
-        })->withoutMiddleware([Auth::class]);
+        Route::get('/register', 'select')->name('auth.register');    
+    })->withoutMiddleware([Auth::class]);
     
     Route::controller(CategoriesController::class)->group(function () {
         Route::get('/categories', 'index')->name('categories.index');
         })->withoutMiddleware([Auth::class]);
 
-    Route::controller(DepartmentController::class)->group(function () {
-        Route::get('/register', 'selectInRegister')->name('auth.register');
-        })->withoutMiddleware([Auth::class]);
-
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

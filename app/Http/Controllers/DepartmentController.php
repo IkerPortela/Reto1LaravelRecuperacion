@@ -76,9 +76,5 @@ class DepartmentController extends Controller
         return redirect()->route('departments.index')->with('success', 'Se ha borrado el departamento');
         
     }
-    public function selectInRegister()
-    {
-        $departments = Department::all();
-        return view('auth.register',['departments' => $departments]);
-    }
+
 }
