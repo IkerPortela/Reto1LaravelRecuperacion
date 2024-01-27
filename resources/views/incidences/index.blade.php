@@ -16,7 +16,6 @@
     @endif    
     @endauth
 @forelse ($incidences as $incidence)
-
 <li class="pt-1">
 <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
   <div class="list-group">

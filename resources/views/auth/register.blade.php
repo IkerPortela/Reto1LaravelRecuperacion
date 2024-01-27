@@ -40,7 +40,7 @@
                         </div>
                         
                         <div class="row mb-3">
-                            <label for="department_id" class="col-md-4 col-form-label text-md-end">{{ __('Id de Departamento') }}</label>
+                            <label for="department_id" class="col-md-4 col-form-label text-md-end">{{ __('Departamento') }}</label>
 
                             <div class="col-md-6">
                                 <select id="department_id" class="form-control @error('department_id') is-invalid @enderror" name="department_id" required>

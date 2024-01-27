@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Incidence;
 use App\Models\Department;
+use App\Models\Categories;
+use App\Models\Priority;
+use App\Models\Status;
 use App\Models\Comments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +33,10 @@ class IncidenceController extends Controller
      */
     public function create()
     {
-        return view('incidences.create');
+        $categories = Categories::orderBy('created_at', 'asc')->get();
+        $priorities = Priority::orderBy('created_at', 'asc')->get();
+        $statuses = Status::orderBy('created_at', 'asc')->get();
+        return view('incidences.create', compact(['categories','priorities','statuses']));
     }
 
     /**
@@ -41,11 +47,12 @@ class IncidenceController extends Controller
         $incidence = new Incidence();
         $incidence->title = $request->title;
         $incidence->text = $request->text;
-        $incidence->posted = $request->has('posted');
-        $incidence->used_time = $request->used_time;
+        $incidence->estimated_time = $request->estimated_time;
         $incidence->user_id = $request->user()->id;
         $incidence->category_id = $request->category_id;
         $incidence->department_id = $request->user()->department_id;
+        $incidence->priority_id = $request->priority_id;
+        $incidence->status_id = $request->status_id;
         $incidence->save();
         return redirect()->route('incidences.index');
     }
@@ -64,7 +71,11 @@ class IncidenceController extends Controller
      */
     public function edit(Incidence $incidence)
     {
-        return view('incidences.edit',['incidence'=>$incidence]);
+        $categories = Categories::orderBy('created_at', 'asc')->get();
+        $priorities = Priority::orderBy('created_at', 'asc')->get();
+        $statuses = Status::orderBy('created_at', 'asc')->get();
+        $departments = Department::orderBy('created_at', 'asc')->get();
+        return view('incidences.edit',compact(['incidence','categories','departments','priorities','statuses']));
     }
 
     /**
@@ -74,12 +85,14 @@ class IncidenceController extends Controller
     {
         $incidence->title = $request->titulo;
         $incidence->text = $request->texto;
-        $incidence->posted = $request->has('posted');
-        $incidence->used_time = $request->used_time;
+        $incidence->estimated_time = $request->estimated_time;
+        $incidence->user_id = $request->user()->id;
         $incidence->category_id = $request->category_id;
         $incidence->department_id = $request->department_id;
+        $incidence->priority_id = $request->priority_id;
+        $incidence->status_id = $request->status_id;
         $incidence->save();
-        return view('incidences.show',['incidence'=>$incidence]);
+        return redirect()->route('incidences.show',['incidence'=>$incidence]);
     }
 
     /**

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('text');
-            $table->time('usedTime')->nullable();
+            $table->string('used_time');
             $table->unsignedBigInteger('incidence_id')->onDelete('cascade');
             $table->foreign('incidence_id')->references('id')->on('incidences')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');

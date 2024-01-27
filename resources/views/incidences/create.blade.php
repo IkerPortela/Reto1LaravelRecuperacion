@@ -14,16 +14,51 @@
             </textarea>
         </div>
         <div class="form-group mb-3">
-            <label for="category_id" class="form-label">Id de Categoria (1 = Critica, 2 = Imprevista, 3 = Menor)</label>
-            <input type="text" class="form-control" id="category_id" name="category_id" required/>
+            <label for="estimated_time" class="form-label">Tiempo Estimado En Minutos</label>
+            <input type="text" class="form-control" id="estimated_time" name="estimated_time" required/>
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="publicado"
-           name="publicado">
-        <label class="form-check-label" for="publicado">
-        ¿Publicar?
-        </label>
-    </div>
+        <div class="form-group mb-3">
+                <label for="category_id" class="form-label">{{ __('Categoria') }}</label>
+                                <select id="category_id" class="form-control @error('category_id') is-invalid @enderror " name="category_id" required>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                                </select>
+
+                                @error('category_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+        </div>
+        <div class="form-group mb-3">
+                <label for="priority_id" class="form-label">{{ __('Prioridad') }}</label>
+                                <select id="priority_id" class="form-control @error('priority_id') is-invalid @enderror " name="priority_id" required>
+                                @foreach($priorities as $priority)
+                                    <option value="{{ $priority->id }}">{{ $priority->name }}</option>
+                                @endforeach
+                                </select>
+
+                                @error('priority_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+        </div>
+        <div class="form-group mb-3">
+                <label for="status_id" class="form-label">{{ __('Estado') }}</label>
+                                <select id="status_id" class="form-control @error('status_id') is-invalid @enderror " name="status_id" required>
+                                @foreach($statuses as $status)
+                                    <option value="{{ $status->id }}">{{ $status->name }}</option>
+                                @endforeach
+                                </select>
+
+                                @error('status_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+        </div>
     <button type="submit" class="btn btn-primary" name="">Crear</button>
     </form>
 </div>

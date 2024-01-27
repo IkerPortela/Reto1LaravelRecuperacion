@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IncidenceController;
+use App\Http\Controllers\PriorityController;
+use App\Http\Controllers\StatusController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CommentsController;
@@ -30,6 +32,18 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::resources([
     '/incidences' => IncidenceController::class,
+    ]);
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::resources([
+    '/priorities' => PriorityController::class,
+    ]);
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::resources([
+    '/statuses' => StatusController::class,
     ]);
 });
 

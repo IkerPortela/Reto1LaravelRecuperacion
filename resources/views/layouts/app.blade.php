@@ -39,6 +39,12 @@
                         <li>
                             <a class="nav-link" href="{{ route('incidences.index') }}">{{ __('Incidencias') }}</a>
                         </li>
+                        <li>
+                            <a class="nav-link" href="{{ route('priorities.index') }}">{{ __('Prioridades') }}</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{ route('statuses.index') }}">{{ __('Estados') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -122,6 +128,8 @@
       <li class="nav-item"><a href="{{ route('departments.index') }}" class="nav-link px-2 text-body-secondary">Departamentos</a></li>
       <li class="nav-item"><a href="{{ route('categories.index') }}" class="nav-link px-2 text-body-secondary">Categorias</a></li>
       <li class="nav-item"><a href="{{ route('incidences.index') }}" class="nav-link px-2 text-body-secondary">Incidencias</a></li>
+      <li class="nav-item"><a href="{{ route('priorities.index') }}" class="nav-link px-2 text-body-secondary">Prioridades</a></li>
+      <li class="nav-item"><a href="{{ route('statuses.index') }}" class="nav-link px-2 text-body-secondary">Estados</a></li>
     </ul>
     <p class="text-center text-body-secondary">© 2023 Compañia, S.A</p>
   </footer>

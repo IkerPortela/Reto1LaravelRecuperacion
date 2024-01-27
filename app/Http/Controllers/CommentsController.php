@@ -18,25 +18,18 @@ class CommentsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('comments.create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
         $comment = new Comments();
         $comment->text = $request->text;
-        $comment->usedTime = $request->usedTime;
+        $comment->used_time = now()->diffForHumans($request->created_at);
         $comment->incidence_id = $request->incidence_id;
         $comment->user_id = auth()->id();
         $comment->save();
-        return redirect()->route('incidences.index');
+    
+        return redirect()->route('incidences.show', ['incidence' => $request->incidence_id]);
     }
 
     /**
@@ -52,7 +45,7 @@ class CommentsController extends Controller
      */
     public function edit(Comments $comment)
     {
-        return view('comments.edit',['commentary'=>$comment]);
+        return view('comments.edit',['comment'=>$comment]);
     }
 
     /**
@@ -63,7 +56,7 @@ class CommentsController extends Controller
         $incidences = Incidence::all();
         $comment->text = $request->text;
         $comment->save();
-        return view('incidences.index',['incidences'=>$incidences]);
+        return redirect()->route('incidences.show', ['incidence' => $comment->incidence_id]);
     }
 
     /**
@@ -72,6 +65,6 @@ class CommentsController extends Controller
     public function destroy(Comments $comment)
     {
         $comment->delete();
-        return redirect()->route('incidences.index');
+        return redirect()->route('incidences.show', ['incidence' => $comment->incidence_id]);
     }
 }

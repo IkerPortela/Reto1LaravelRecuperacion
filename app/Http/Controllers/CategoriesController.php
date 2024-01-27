@@ -17,7 +17,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Categories::all();
+        $categories = Categories::orderBy('name', 'asc')->get();
         return view('categories.index',['categories' => $categories]);
     }
 
